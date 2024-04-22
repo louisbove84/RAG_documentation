@@ -2,3 +2,6 @@ pypdf
 langchain
 chromadb # Vector storage
 pytest
+boto3
+langchain-openai
+pysqlite3 
