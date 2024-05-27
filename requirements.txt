@@ -5,3 +5,4 @@ pytest
 boto3
 langchain-openai
 pysqlite3 
+protobuf==3.19.5

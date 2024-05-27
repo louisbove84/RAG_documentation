@@ -1,4 +1,5 @@
 import argparse
+import os
 from langchain.vectorstores.chroma import Chroma
 from langchain.prompts import ChatPromptTemplate
 from langchain_community.llms.ollama import Ollama
@@ -24,7 +25,23 @@ def main():
     parser.add_argument("query_text", type=str, help="The query text.")
     args = parser.parse_args()
     query_text = args.query_text
-    query_rag(query_text)
+    
+    from openai import OpenAI
+    client = OpenAI(
+      api_key=os.environ.get("OPENAI_API_KEY"),
+    )
+    
+    completion = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
+        {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}
+    ]
+    )
+
+    print(completion.choices[0].message)
+    
+    # query_rag(query_text)
 
 
 def query_rag(query_text: str):
@@ -40,6 +57,7 @@ def query_rag(query_text: str):
     prompt = prompt_template.format(context=context_text, question=query_text)
     # print(prompt)
 
+    model = 
     model = Ollama(model="mistral")
     response_text = model.invoke(prompt)
 

@@ -9,17 +9,17 @@ Actual Response: {actual_response}
 """
 
 
-def test_monopoly_rules():
+def test_bitcoin_knowledge():
     assert query_and_validate(
-        question="How much total money does a player start with in Monopoly? (Answer with the number only)",
-        expected_response="$1500",
+        question="Is Bitcoin proof of work or proof of stake?",
+        expected_response="Proof of work.",
     )
 
 
-def test_ticket_to_ride_rules():
+def test_etherium_knowledge():
     assert query_and_validate(
-        question="How many points does the longest continuous train get in Ticket to Ride? (Answer with the number only)",
-        expected_response="10 points",
+        question="Is Etherium proof or work or proof of stake?",
+        expected_response="Proof of work.",
     )
 
 
